@@ -1,0 +1,37 @@
+{
+  "name": "coa-ali-sls",
+  "version": "0.0.0",
+  "description": "轻量的阿里云日志服务SDK for Node.js",
+  "keywords": [
+    "coajs",
+    "coa",
+    "coa-ali-sls",
+    "ali-sls",
+    "ali",
+    "sls"
+  ],
+  "license": "MIT",
+  "author": "Aex",
+  "homepage": "https://github.com/coajs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coajs/coa-ali-sls.git"
+  },
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "rm -rf dist && tsc && cp package.json *.md dist",
+    "sync": "curl -X PUT 'https://npm.taobao.org/sync/coa-ali-sls?sync_upstream=true'",
+    "publish-prerelease": "yarn build && yarn version --prerelease && cp package.json README.md dist && cd dist && npm publish"
+  },
+  "dependencies": {
+    "coa-echo": "^1.0.8",
+    "coa-error": "^1.1.3",
+    "coa-helper": "^1.1.1",
+    "coa-secure": "^1.1.2",
+    "coa-xml": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.41",
+    "typescript": "^4.2.3"
+  }
+}

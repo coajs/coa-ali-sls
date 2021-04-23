@@ -19,9 +19,9 @@
   },
   "scripts": {
     "dev": "tsc -w",
-    "build": "rm -rf dist && tsc && cp package.json *.md dist",
+    "build": "rm -rf dist && tsc && cp package.json *.md dist && rm -rf dist/test",
     "sync": "curl -X PUT 'https://npm.taobao.org/sync/coa-ali-sls?sync_upstream=true'",
-    "publish-prerelease": "yarn build && yarn version --prerelease && cp package.json README.md dist && cd dist && npm publish"
+    "publish-prerelease": "yarn build && yarn version --prerelease && cp package.json *.md dist && cd dist && rm -rf dist && npm publish"
   },
   "dependencies": {
     "coa-echo": "^1.0.8",

@@ -35,7 +35,7 @@ import { AliSlsService } from 'coa-ali-sls'
 // SLS配置
 const config = {
   endpoint: 'cn-shanghai-intranet.log.aliyuncs.com',
-  project: 'mm-site-log-t1',
+  project: 'project-name',
   accessKeyId: 'LTAI4XXXXXXXXXXXXXqTgH',
   accessKeySecret: 'Eg02rdV23XXXXXXXXXXXXXXXXXwgw8Pk',
 }

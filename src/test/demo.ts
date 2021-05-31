@@ -14,14 +14,14 @@ const config = {
 const service = new AliSlsService(config)
 
 // 定义查询的开始时间和结束时间
-const from = dayjs('2020-01-01'), to = dayjs('2020-01-02')
+const from = dayjs('2020-01-01')
+const to = dayjs('2020-01-02')
 
 // 查询指定 Project 下某个 Logstore 中的日志数据
 await service.getLogs('project-name', from, to)
 
 // 查询指定 Project 下某个 Logstore 中日志的分布情况
 await service.getHistograms('project-name', from, to)
-
 
 // 定义查询条件(全部用法如下)
 const query = new AliSlsQuery()

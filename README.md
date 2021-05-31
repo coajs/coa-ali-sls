@@ -5,18 +5,18 @@
 [![npm downloads](https://img.shields.io/npm/dm/coa-ali-sls.svg?style=flat-square)](http://npm-stat.com/charts.html?package=coa-ali-sls)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/coajs/coa-ali-sls/pulls)
 
-轻量的阿里云日志服务SDK for Node.js
+轻量的阿里云日志服务 SDK for Node.js
 
-来源于一个实际生产项目，将用到的API和业务解耦后封装成此库。
+来源于一个实际生产项目，将用到的 API 和业务解耦后封装成此库。
 
-后续会根据实际使用情况优化和扩充新的服务。如果急需用到其他接口，可以直接使用阿里云官方SDK [aliyun-sdk/sls](https://github.com/aliyun-UED/aliyun-sdk-js/tree/master/samples/sls) 或查看阿里云官方 [帮助文档](https://help.aliyun.com/document_detail/141789.html)。
+后续会根据实际使用情况优化和扩充新的服务。如果急需用到其他接口，可以直接使用阿里云官方 SDK [aliyun-sdk/sls](https://github.com/aliyun-UED/aliyun-sdk-js/tree/master/samples/sls) 或查看阿里云官方 [帮助文档](https://help.aliyun.com/document_detail/141789.html)。
 
 ## 特征
 
 - 覆盖了绝大多数使用场景
-- 相对于官方的SDK，无任何第三方依赖，更轻量简洁
+- 相对于官方的 SDK，无任何第三方依赖，更轻量简洁
 - 统一了异步表现形式，全部返回 Promise
-- 内置类型引用，无需额外查看文档，开箱即用，IDE友好
+- 内置类型引用，无需额外查看文档，开箱即用，IDE 友好
 
 ## 快速开始
 
@@ -44,7 +44,8 @@ const config = {
 const service = new AliSlsService(config)
 
 // 定义查询的开始时间和结束时间
-const from = dayjs('2020-01-01'), to = dayjs('2020-01-02')
+const from = dayjs('2020-01-01')
+const to = dayjs('2020-01-02')
 
 // 查询指定 Project 下某个 Logstore 中的日志数据
 service.getLogs('project-name', from, to)
@@ -62,10 +63,13 @@ import { dayjs } from 'coa-helper'
 import { AliSlsQuery, AliSlsService } from 'coa-ali-sls'
 
 // 创建service实例
-const service = new AliSlsService({ /* ... */})
+const service = new AliSlsService({
+  /* ... */
+})
 
 // 定义查询的开始时间和结束时间
-const from = dayjs('2020-01-01'), to = dayjs('2020-01-02')
+const from = dayjs('2020-01-01'),
+  to = dayjs('2020-01-02')
 
 // 定义查询条件(全部用法如下)
 const query = new AliSlsQuery()

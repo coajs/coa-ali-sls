@@ -20,7 +20,7 @@
   "scripts": {
     "dev": "tsc -w",
     "build": "rm -rf dist && tsc && cp package.json *.md dist && rm -rf dist/test",
-    "lint": "eslint . ",
+    "lint": "eslint .",
     "prettier": "prettier -w .",
     "sync": "curl -X PUT 'https://npm.taobao.org/sync/coa-ali-sls?sync_upstream=true'"
   },

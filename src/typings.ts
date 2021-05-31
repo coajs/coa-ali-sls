@@ -8,6 +8,6 @@ const config = {
 export declare namespace AliSls {
   type Config = typeof config
   interface Dic<T = any> {
-    [key: string]: any
+    [key: string]: T
   }
 }

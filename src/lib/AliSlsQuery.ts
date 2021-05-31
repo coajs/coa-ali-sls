@@ -4,14 +4,13 @@ import { _ } from 'coa-helper'
 
 // SLS 极简的SLS SQLBuilder
 export class AliSlsQuery {
-
-  private _column = [] as string []
-  private _where = [] as string[]
-  private _groupBy = [] as string[]
-  private _orderBy = [] as string[]
+  private readonly _column = [] as string[]
+  private readonly _where = [] as string[]
+  private readonly _groupBy = [] as string[]
+  private readonly _orderBy = [] as string[]
   private _limit = 0 as number
 
-  constructor () {
+  constructor() {
     return this
   }
 
@@ -20,9 +19,8 @@ export class AliSlsQuery {
    * @param field 列名
    * @param alias 输出别名
    */
-  column (field: string, alias?: string) {
-    if (alias)
-      field += ' as ' + alias
+  column(field: string, alias?: string) {
+    if (alias) field += ' as ' + alias
     this._column.push(field)
     return this
   }
@@ -33,7 +31,7 @@ export class AliSlsQuery {
    * @param format 格式化
    * @param alias 输出别名
    */
-  dateFormat (field: string, format: string, alias?: string) {
+  dateFormat(field: string, format: string, alias?: string) {
     return this.column(`date_format(${field},'${format}')`, alias)
   }
 
@@ -42,7 +40,7 @@ export class AliSlsQuery {
    * @param field 列名
    * @param alias 输出别名
    */
-  approxDistinct (field: string, alias?: string) {
+  approxDistinct(field: string, alias?: string) {
     const stmt = `approx_distinct(${field})`
     return this.column(stmt, alias)
   }
@@ -55,7 +53,7 @@ export class AliSlsQuery {
    * @param field 列名
    * @param alias 输出别名
    */
-  timeSeries (field = '__time__', alias: string, grainSize: string, format = '%Y-%m-%d %H:%i', padding = 0) {
+  timeSeries(field: string, alias: string, grainSize: string, format = '%Y-%m-%d %H:%i', padding = 0) {
     return this.column(`time_series(${field}, '${grainSize}', '${format}', '${padding}')`, alias)
   }
 
@@ -65,7 +63,7 @@ export class AliSlsQuery {
    * @param value 值
    * @param checkEmpty true进行空值检查，为空的不查询 false 不进行空值检查
    */
-  eq (field: string, value: string, checkEmpty = false) {
+  eq(field: string, value: string, checkEmpty = false) {
     return this.where(field, '=', value, true, checkEmpty)
   }
 
@@ -75,7 +73,7 @@ export class AliSlsQuery {
    * @param value 值
    * @param checkEmpty true进行空值检查，为空的不查询 false 不进行空值检查
    */
-  ne (field: string, value: string, checkEmpty = false) {
+  ne(field: string, value: string, checkEmpty = false) {
     return this.where(field, '<>', value, true, checkEmpty)
   }
 
@@ -84,9 +82,8 @@ export class AliSlsQuery {
    * @param field 字段名
    * @param values 字符串数组
    */
-  notIn (field: string, values: string[]) {
-    if (!values.length)
-      return this
+  notIn(field: string, values: string[]) {
+    if (!values.length) return this
 
     _.forEach(values, (value, i) => {
       values[i] = `'${value}'`
@@ -101,7 +98,7 @@ export class AliSlsQuery {
    * @param likes 带%的数据库语句
    * @param checkEmpty true进行空值检查，为空的不查询 false 不进行空值检查
    */
-  notLike (field: string, likes: string, checkEmpty = false) {
+  notLike(field: string, likes: string, checkEmpty = false) {
     return this.where(field, 'not like', likes, true, checkEmpty)
   }
 
@@ -109,7 +106,7 @@ export class AliSlsQuery {
    * 根据字段分组
    * @param fields 字段名
    */
-  groupBy (...fields: string[]) {
+  groupBy(...fields: string[]) {
     this._groupBy.push(...fields)
     return this
   }
@@ -118,7 +115,7 @@ export class AliSlsQuery {
    * 根据字段排序
    * @param fields 字段名
    */
-  orderBy (...fields: string[]) {
+  orderBy(...fields: string[]) {
     this._orderBy.push(...fields)
     return this
   }
@@ -127,7 +124,7 @@ export class AliSlsQuery {
    * 获取前n条记录
    * @param count 前n项记录
    */
-  limit (count: number) {
+  limit(count: number) {
     this._limit = count
     return this
   }
@@ -135,25 +132,20 @@ export class AliSlsQuery {
   /**
    * 获取sql语句
    */
-  toQuery () {
+  toQuery() {
     let sql = '* | '
 
     this._column.length || die.hint('缺少column')
     sql += 'select ' + this._column.join(', ')
 
-    if (this._where.length)
-      sql += ' where ' + this._where.join(' and ')
+    if (this._where.length) sql += ' where ' + this._where.join(' and ')
 
-    if (this._groupBy.length)
-      sql += ' group by ' + this._groupBy.join(',')
+    if (this._groupBy.length) sql += ' group by ' + this._groupBy.join(',')
 
-    if (this._orderBy.length)
-      sql += ' order by ' + this._orderBy.join(',')
+    if (this._orderBy.length) sql += ' order by ' + this._orderBy.join(',')
 
-    if (this._limit > 0)
-      sql += ' limit ' + this._limit
-    else
-      echo.warn('SLS查询的结果行数默认为')
+    if (this._limit > 0) sql += ' limit ' + this._limit
+    else echo.warn('SLS查询的结果行数默认为')
     return sql
   }
 
@@ -162,7 +154,7 @@ export class AliSlsQuery {
    * @param field  字段名
    * @param alias 输出别名
    */
-  count (field = '*', alias?: string) {
+  count(field = '*', alias?: string) {
     return this.column(`count(${field})`, alias)
   }
 
@@ -174,13 +166,11 @@ export class AliSlsQuery {
    * @param wrapValue 是否把值当作字符串处理 是：在查询值两边添加单引号 否：不添加单引号
    * @param checkEmpty true进行空值检查，false不进行空值检查
    */
-  private where (field: string, operate: string, value: string, wrapValue: boolean, checkEmpty: boolean) {
+  private where(field: string, operate: string, value: string, wrapValue: boolean, checkEmpty: boolean) {
     // 当开启空值检查 并且当前值为空的时候跳过该值
-    if (checkEmpty && !value)
-      return this
+    if (checkEmpty && !value) return this
     const str = wrapValue ? `"${field}" ${operate} '${value}'` : `"${field}" ${operate} ${value}`
     this._where.push(str)
     return this
   }
-
 }

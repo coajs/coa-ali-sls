@@ -3,7 +3,7 @@
 {
   "name": "coajs",
   "image": "mcr.microsoft.com/vscode/devcontainers/javascript-node",
-  "postCreateCommand": "yarn",
+  "mounts": ["source=container-share-cache,target=/usr/local/share/.cache"],
   "extensions": [
     "mutantdino.resourcemonitor",
     "github.vscode-pull-request-github",

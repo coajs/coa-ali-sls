@@ -53,8 +53,17 @@ export class AliSlsQuery {
    * @param field 列名
    * @param alias 输出别名
    */
-  timeSeries(field: string, alias: string, grainSize: string, format = '%Y-%m-%d %H:%i', padding = 0) {
-    return this.column(`time_series(${field}, '${grainSize}', '${format}', '${padding}')`, alias)
+  timeSeries(
+    field: string,
+    alias: string,
+    grainSize: string,
+    format = '%Y-%m-%d %H:%i',
+    padding = 0
+  ) {
+    return this.column(
+      `time_series(${field}, '${grainSize}', '${format}', '${padding}')`,
+      alias
+    )
   }
 
   /**
@@ -166,10 +175,18 @@ export class AliSlsQuery {
    * @param wrapValue 是否把值当作字符串处理 是：在查询值两边添加单引号 否：不添加单引号
    * @param checkEmpty true进行空值检查，false不进行空值检查
    */
-  private where(field: string, operate: string, value: string, wrapValue: boolean, checkEmpty: boolean) {
+  private where(
+    field: string,
+    operate: string,
+    value: string,
+    wrapValue: boolean,
+    checkEmpty: boolean
+  ) {
     // 当开启空值检查 并且当前值为空的时候跳过该值
     if (checkEmpty && !value) return this
-    const str = wrapValue ? `"${field}" ${operate} '${value}'` : `"${field}" ${operate} ${value}`
+    const str = wrapValue
+      ? `"${field}" ${operate} '${value}'`
+      : `"${field}" ${operate} ${value}`
     this._where.push(str)
     return this
   }

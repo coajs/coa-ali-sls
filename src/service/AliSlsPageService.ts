@@ -10,7 +10,11 @@ export class AliSlsPageService {
   /**
    * 获取日志查询控制台链接
    */
-  getLogSearchConsolePageUrl(project: string, logstore: string, params: { [key: string]: string }) {
+  getLogSearchConsolePageUrl(
+    project: string,
+    logstore: string,
+    params: { [key: string]: string }
+  ) {
     const search = new URLSearchParams(params).toString()
     return `${baseURL}/lognext/project/${project}/logsearch/${logstore}?${search}`
   }
@@ -18,7 +22,11 @@ export class AliSlsPageService {
   /**
    * 获取快速查询控制台链接
    */
-  getSavedSearchConsolePageUrl(project: string, savedsearch: string, params: { [key: string]: string }) {
+  getSavedSearchConsolePageUrl(
+    project: string,
+    savedsearch: string,
+    params: { [key: string]: string }
+  ) {
     const search = new URLSearchParams(params).toString()
     return `${baseURL}/lognext/project/${project}/savedsearch/${savedsearch}?${search}`
   }
@@ -26,7 +34,11 @@ export class AliSlsPageService {
   /**
    * 获取仪表盘控制台链接
    */
-  getDashboardConsolePageUrl(project: string, dashboard: string, params: { [key: string]: string }) {
+  getDashboardConsolePageUrl(
+    project: string,
+    dashboard: string,
+    params: { [key: string]: string }
+  ) {
     const search = new URLSearchParams(params).toString()
     return `${baseURL}/lognext/project/${project}/dashboard/${dashboard}?${search}`
   }

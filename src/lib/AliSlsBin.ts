@@ -16,7 +16,9 @@ export class AliSlsBin {
     const headers = this.getHeaders('GET', path)
     const baseURL = `https://${this.config.project}.${this.config.endpoint}`
 
-    const result = await axios.get(url, { params, headers, baseURL }).catch(this.resultError)
+    const result = await axios
+      .get(url, { params, headers, baseURL })
+      .catch(this.resultError)
 
     return this.resultResponse(result)
   }
@@ -44,7 +46,9 @@ export class AliSlsBin {
     return { body, info }
   }
 
-  private getSortQueryString(params: AliSls.Dic<string | number | boolean | undefined>) {
+  private getSortQueryString(
+    params: AliSls.Dic<string | number | boolean | undefined>
+  ) {
     const list = [] as string[]
     _.forEach(params, (v, k) => {
       list.push(k + '=' + v)
@@ -52,7 +56,11 @@ export class AliSlsBin {
     return list.sort().join('&')
   }
 
-  private getHeaders(method: string, path: string, headers: AliSls.Dic<string> = {}) {
+  private getHeaders(
+    method: string,
+    path: string,
+    headers: AliSls.Dic<string> = {}
+  ) {
     _.defaults(headers, {
       'x-log-bodyrawsize': '0',
       'x-log-apiversion': '0.6.0',
@@ -82,7 +90,11 @@ export class AliSlsBin {
     signs.push(...x_list.sort())
     signs.push(path)
 
-    const signature = secure.sha1_hmac(signs.join('\n'), this.config.accessKeySecret, 'base64')
+    const signature = secure.sha1_hmac(
+      signs.join('\n'),
+      this.config.accessKeySecret,
+      'base64'
+    )
 
     return `LOG ${this.config.accessKeyId}:${signature}`
   }

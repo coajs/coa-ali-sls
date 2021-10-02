@@ -2,14 +2,7 @@
   "name": "coa-ali-sls",
   "version": "0.0.0",
   "description": "轻量的阿里云日志服务SDK for Node.js",
-  "keywords": [
-    "coajs",
-    "coa",
-    "coa-ali-sls",
-    "ali-sls",
-    "ali",
-    "sls"
-  ],
+  "keywords": ["coajs", "coa", "coa-ali-sls", "ali-sls", "ali", "sls"],
   "license": "MIT",
   "author": "Aex",
   "homepage": "https://github.com/coajs",
@@ -26,22 +19,19 @@
     "sync": "curl -X PUT 'https://npm.taobao.org/sync/coa-ali-sls?sync_upstream=true'"
   },
   "dependencies": {
-    "coa-echo": "^1.1.1",
+    "coa-echo": "^1.2.1",
     "coa-error": "^1.5.2",
     "coa-helper": "^1.2.1",
     "coa-secure": "^1.2.0",
     "coa-xml": "^1.1.0"
   },
   "devDependencies": {
-    "@types/node": "^16.4.13",
-    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@types/node": "^16.10.2",
+    "@typescript-eslint/eslint-plugin": "^4.32.0",
+    "@typescript-eslint/parser": "^4.32.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-config-standard-with-typescript": "^20.0.0",
-    "eslint-plugin-import": "^2.24.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "prettier": "^2.3.2",
-    "typescript": "^4.3.5"
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.3"
   }
 }

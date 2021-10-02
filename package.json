@@ -5,7 +5,7 @@
   "keywords": ["coajs", "coa", "coa-ali-sls", "ali-sls", "ali", "sls"],
   "license": "MIT",
   "author": "Aex",
-  "homepage": "https://github.com/coajs",
+  "homepage": "https://github.com/coajs/coa-ali-sls",
   "repository": {
     "type": "git",
     "url": "https://github.com/coajs/coa-ali-sls.git"
